@@ -8,9 +8,6 @@ pipeline {
       }
     }
     stage('Compile') { // Compile and do unit testing
-      tools {
-        maven maven3
-      }
       steps {
         // run mvn to execute compile and unit testing
         sh 'mvn clean install'
