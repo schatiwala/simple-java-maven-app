@@ -9,8 +9,8 @@ pipeline {
     }
     stage('Compile') { // Compile and do unit testing
       tools {
-        jdk JDK1.8
-        maven maven3
+        jdk 'JDK1.8'
+        maven 'maven3'
       }
       steps {
         // run mvn to execute compile and unit testing
