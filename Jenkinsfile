@@ -14,7 +14,7 @@ pipeline {
     stage ('compile and SonarQube Testing') {
       steps {
         sh 'mvn clean sonar:sonar install'
-        )
+      }
       }
     }    
   }
