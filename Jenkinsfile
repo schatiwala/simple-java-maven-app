@@ -11,7 +11,6 @@ pipeline {
         git 'https://github.com/schatiwala/simple-java-maven-app'
       }
      }
-    }
 		stage ('Artifactory configuration') {
             steps {
                 rtServer (
