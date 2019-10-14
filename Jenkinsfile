@@ -1,21 +1,16 @@
 pipeline {
   agent any
+      tools {
+        jdk 'JDK1.8'
+        maven 'maven3'
+      }
   stages {
     stage('Source') { // Get code
       steps {
         // get code from our Git repository
         git 'https://github.com/schatiwala/simple-java-maven-app'
       }
-    }
-    stage('Compile') { // Compile and do unit testing
-      tools {
-        jdk 'JDK1.8'
-        maven 'maven3'
-      }
-      steps {
-        // run mvn to execute compile and unit testing
-        sh 'mvn clean install'
-      }
+     }
     }
 		stage ('Artifactory configuration') {
             steps {
@@ -35,16 +30,15 @@ pipeline {
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "Artifactory4.15.0",
-                    releaseRepo: "libs-release",
-                    snapshotRepo: "libs-snapshot"
+                    releaseRepo: "libs-release-local",
+                    snapshotRepo: "libs-snapshot-local"
                 )
             }
         }
-
         stage ('Exec Maven') {
             steps {
                 rtMavenRun (
-                    tool: 'maven3', // Tool name from Jenkins configuration
+                    tool: maven3, // Tool name from Jenkins configuration
                     pom: 'pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
@@ -52,7 +46,6 @@ pipeline {
                 )
             }
         }
-
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
