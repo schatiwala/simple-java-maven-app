@@ -22,15 +22,15 @@ pipeline {
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
                     serverId: "Artifactory4.15.0",
-                    releaseRepo: "libs-release-local",
-                    snapshotRepo: "libs-snapshot-local"
+                    releaseRepo: "/artifactory/webapp/#/admin/repository/local/libs-release-local/libs-release-local",
+                    snapshotRepo: "/artifactory/webapp/#/admin/repository/local/libs-release-local/libs-snapshot-local"
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "Artifactory4.15.0",
-                    releaseRepo: "libs-release-local",
-                    snapshotRepo: "libs-snapshot-local"
+                    releaseRepo: "/artifactory/webapp/#/admin/repository/local/libs-release-local/libs-release-local",
+                    snapshotRepo: "/artifactory/webapp/#/admin/repository/local/libs-release-local/libs-snapshot-local"
                 )
             }
         }
