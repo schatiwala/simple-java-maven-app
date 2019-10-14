@@ -9,6 +9,7 @@ pipeline {
     }
     stage('Compile') { // Compile and do unit testing
       tools {
+        jdk JDK1.8
         maven maven3
       }
       steps {
