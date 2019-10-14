@@ -22,7 +22,7 @@ pipeline {
                 rtServer (
                     id: "Artifactory4.15.0",
                     url: "http://localhost:8081",
-                    credentialsId: artifactory
+                    credentialsId: "artifactory"
                 )
 
                 rtMavenDeployer (
