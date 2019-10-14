@@ -39,7 +39,7 @@ pipeline {
                 rtMavenRun (
                     tool: 'maven3', // Tool name from Jenkins configuration
                     pom: 'pom.xml',
-                    goals: 'clean sonar:sonar install',
+                    goals: 'clean sonar:sonar',
                     deployerId: "MAVEN_DEPLOYER",
                     resolverId: "MAVEN_RESOLVER"
                 )
