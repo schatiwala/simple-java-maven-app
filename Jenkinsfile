@@ -13,7 +13,9 @@ pipeline {
     }
     stage ('Build and SonarQube Analysis') {
       steps {
-        sh 'mvn clean package sonar:sonar'
+        withSonarQubeEnv('sonar') {
+          sh 'mvn clean package sonar:sonar'
+        }  
       }
     }
     stage("Quality Gate"){
