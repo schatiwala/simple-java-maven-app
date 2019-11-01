@@ -13,8 +13,26 @@ pipeline {
     }
     stage ('compile and SonarQube Testing') {
       steps {
-        sh 'mvn clean sonar:sonar install'
+        sh 'mvn clean sonar:sonar compile'
       }
-    }    
+    }
+    stage("Quality Gate"){
+          timeout(time: 2, unit: 'MINUTES') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+    }        
+    stage ('Test state') {
+      steps {
+        sh 'mvn test'
+      }
+    }
+    stage ('Deploy') {
+      steps {
+        sh 'mvn install'
+      }
+    }
   }
 }
