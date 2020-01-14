@@ -1,6 +1,7 @@
 pipeline {
   agent any
       tools {
+        // set jdk and maven variables
         jdk 'JDK1.8'
         maven 'maven3'
       }
